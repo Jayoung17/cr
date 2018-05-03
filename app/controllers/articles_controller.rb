@@ -21,6 +21,27 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
         # test comment
     end
-
+    
+    
+    def destroy
+        article = Article.find(params[:id])
+        article.destroy
+        
+        redirect_to articles_path
+    end
+    
+    
+    def edit
+        @article = Article.find(params[:id])
+    end
+    
+    
+    def update
+        @article = Article.find(params[:id])
+        @article.update(params.require(:article).permit(:title, :content))
+        
+        redirect_to @article
+    end
+    
 end
 
